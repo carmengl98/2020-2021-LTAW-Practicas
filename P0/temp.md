@@ -1,7 +1,7 @@
 # Encabezado 1
 
 
-## Encabezado nivel 2
+## Encabezado nivel  2
 Este es un parrafo normal
 
 Este es un texto qeu está en la misma línea. Es una línea muy larga...
