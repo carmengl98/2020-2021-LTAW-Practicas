@@ -1,6 +1,5 @@
 Este es el primer fichero de texto creado desde VSCode.
 
-
 En este fichero de texto  metemos un texto cualquiera:
 
 https://covid-vacuna.app/
