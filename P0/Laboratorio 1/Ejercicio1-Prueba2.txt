@@ -1,0 +1,10 @@
+Este es el segundo fichero de texto creado desde VSCode.
+
+En este fichero de texto  metemos un texto cualquiera:
+
+Tras esta sesión deberías saber hacer lo siguiente desde VSCode en tu ordenador:
+
+Añadir ficheros a tu repositorio de prácticas
+Eliminar ficheros del repo
+Mover ficheros entre carpetas del repo
+Modificar ficheros y subir las modificacionese al repo

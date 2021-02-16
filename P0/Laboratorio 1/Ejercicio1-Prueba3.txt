@@ -1,0 +1,7 @@
+Este es el tercer fichero de texto creado desde VSCode.
+
+En este fichero de texto  metemos un texto cualquiera:
+
+No quiero escribir nada. 
+
+FIN.
