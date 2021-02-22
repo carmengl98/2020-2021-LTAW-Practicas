@@ -29,11 +29,13 @@ function suma(x,y) {
   let a = suma(2,3);
   
   //-- Probando la funcione mensaje
-  mensaje("Prueba")
+  mensaje("Prueba") /*Esta funcion imprime cadenas y numeros*/
   mensaje(a);
   
   //-- Probando la funcion call
   call(saluda);
+  /*No hace falta que las funciones tengan nombre*/
+  /*Se pasa a la función call la funcion saluda (retrollamada)*/
   
   //-- Se le pasa como parametro una funcion
   //-- que se define dentro de los parmatros, vez de 
