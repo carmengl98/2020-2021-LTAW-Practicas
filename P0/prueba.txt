@@ -1,1 +1,0 @@
-Esto es una prueba de creación de un archivo de texto desde VSCODE
