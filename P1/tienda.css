@@ -1,5 +1,13 @@
+body {
+    background-color: lightblue;
+}
+
 button{
     width: 70px;
+}
+p{
+    font-family: verdana;
+    font-size: 80px;  
 }
 
 /* No va*/
