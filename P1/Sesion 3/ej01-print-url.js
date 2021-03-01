@@ -25,3 +25,4 @@ console.log("    * Otro: " + myURL.searchParams.get('otro'));
 
 //-- Ultima parte: Fragmento
 console.log("  * Fragmento: " + myURL.hash);
+//-- Fragmento solo para el navegador
