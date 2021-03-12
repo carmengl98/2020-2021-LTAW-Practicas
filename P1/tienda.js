@@ -1,28 +1,45 @@
+//-- Importo los módulos http,url y fs
 const http = require('http');
+const url =require('url');
+const fs = require('fs');
 
 //-- Definir el puerto a utilizar
 const PUERTO = 9000;
+
 
 //-- Crear el servidor
 const server = http.createServer((req, res) => {
     
   //-- Indicamos que se ha recibido una petición
-  console.log("Petición recibida!");
-
-  //-- Cabecera que indica el tipo de datos del
-  //-- cuerpo de la respuesta: Texto plano
+  console.log("Petición recibida!!");
+  console.log(req.url); 
+  // res.statusCode = 404; /*Este mensaje no sale por pantalla*/
+  // res.statusMessage = "Not Found";
+  res.statusCode = 200;
+  res.statusMessage = "OK ";
   res.setHeader('Content-Type', 'text/plain');
-  /*Permite añadir cabecera y su valor*/
-  /*text/plain es texto plano*/
+  res.write("Soy el servidor\n");
+  res.end()
+  
 
-  //-- Mensaje del cuerpo
-  res.write("Soy el server!!\n");
+});
+//-- Fichero a leer
+const FICHERO = 'tienda.html';
 
-  //-- Terminar la respuesta y enviarla
-  res.end();
+const pagina = fs.readFile('tienda.html', (err, data) => {
+
+    if (err) {  //-- Ha ocurrido algun error
+     console.log("Error!!")
+     console.log(err.message);
+    } 
+    else {  //-- Lectura normal
+        console.log("Lectura completada...")
+        console.log("Contenido del fichero: \n")
+        console.log(data);
+    }
 });
 
-//-- Activar el servidor: ¡Que empiece la fiesta!
+//-- Activar el servidor:
 server.listen(PUERTO);
 
 console.log(" Server activado!. Escuchando en puerto: " + PUERTO);
