@@ -1,0 +1,9 @@
+<!-- Utilizando sufijos(+) podemos decir si dentro de tienda hay uno o más productos-->
+<!ELEMENT tienda (producto+)>
+ <!-- Dentro del elemento producto van a estar los elementos nombre, descripcion y stock-->
+ <!--Con sufijo(?) hacemos que la etiqueta descripcion sea opcional-->
+ <!ELEMENT producto (nombre, descripcion?, stock)>
+<!-- Elemento simple(contienen datos-->
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT descripcion (#PCDATA)>
+<!ELEMENT stock (#PCDATA)>
