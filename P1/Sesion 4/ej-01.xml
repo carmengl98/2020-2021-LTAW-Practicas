@@ -2,17 +2,20 @@
 
 <!-- Estructura de mi tienda -->
 <!-- Nodo raiz -->
-<tienda>
+<!-- El analizador de XML NO se conecta a esas URLs-->
+<tienda xmlns:t1="http://carmengl98.github.io/Tienda-1"
+        xmlns:t2="http://w3c.definitions/Store/es">
 
     <!-- Dentro de mi tienda podemos encontrar varios productos-->
-  <producto>
+    <!-- los prefijos t1 y t2 se encuentran en espacios de nombres distintos.-->
+    
+  <t1:producto>
     Un producto de mi tienda
-  </producto>
+  </t1:producto>
 
-  
 
-  <producto>
+  <t2:producto>
     Otro producto de mi tienda
-  </producto>
+  </t2:producto>
 
 </tienda>
