@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Aqui defino el lenguaje que quiero(Gramatica)
+Un lenguaje que solo tiene la marca raiz y dentro de ella 
+solo puedo meter cadenas de texto-->
+
+<!DOCTYPE tienda [
+    <!--Dentro de tienda tiene que haber un 
+        producto porque lo he definido -->
+    <!-- Utilizando sufijos(+) podemos decir si dentro de tienda
+         hay uno o más productos-->
+    <!ELEMENT tienda (producto+)>
+    <!-- Dentro del elemento producto van a estar los elementos 
+        nombre, descripcion y stock-->
+    <!--Con sufijo(?) hacemos que la etiqueta descripcion sea opcional-->
+    <!ELEMENT producto (nombre, descripcion?, stock)>
+    <!-- Elemento simple(contienen datos-->
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT descripcion (#PCDATA)>
+    <!ELEMENT stock (#PCDATA)>
+
+]>
+<!-- Aqui tenemos un ejemplo de uso del lenguaje-->
+ <tienda>
+     <producto>
+         <nombre>Alhambra II</nombre>
+         <descripcion>Placa co FPGA</descripcion>
+         <stock>3</stock>
+     </producto>
+     <producto>
+         <nombre>Icestick</nombre>
+         <!--<descripcion>Placa con FPGA</descripcion> ES OPCIONAL-->
+         <stock>10</stock>
+     </producto>
+ </tienda>
