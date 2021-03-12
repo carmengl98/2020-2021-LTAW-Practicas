@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tienda
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ej2-xs-compuesto.xsd">
+
+    <producto>
+        Este es un producto
+    </producto>
+    <producto>
+        Este es otro producto
+    </producto>
+</tienda>
