@@ -1,11 +1,10 @@
 //-- Importo los módulos http,url y fs
 const http = require('http');
-const url =require('url');
+const url = require('url');
 const fs = require('fs');
 
 //-- Definir el puerto a utilizar
 const PUERTO = 9000;
-
 
 //-- Crear el servidor
 const server = http.createServer((req, res) => {
@@ -21,6 +20,22 @@ const server = http.createServer((req, res) => {
   const myURL = new URL(req.url, 'http://' + req.headers['host']);
   console.log("Recurso recibido: " + myURL.pathname);
 
+  var mime2 = {
+    'html' : 'text/html',
+    'css'  : 'text/css',
+    'jfif'  : 'image/jfif',
+ };
+  // -- Buscamos el "." final para poder indicar que tipo mime es
+  let hastaPunto = myURL.pathname.lastIndexOf(".");
+  let type = myURL.pathname.slice(hastaPunto+1);
+  let typeMime = type;
+  console.log("mime",mime2[type]);
+
+  /* var cadenaDeTexto = "https://www.midominio.com/sites/document/indice1.txt";
+  var hastaSites = cadenaDeTexto.indexOf('/document');
+  console.log(hastaSites);
+  console.log(cadenaDeTexto.substring(0, hastaSites+1));
+ */
 
   //-- Valores de la respuesta por defecto
   let code = 200;
@@ -36,7 +51,7 @@ const server = http.createServer((req, res) => {
       //-- Fichero a leer
       page = "tienda_error.html";
    }
-  
+
 
   //-- Definir tipo de archivo html.
   var mime = "text/html"
@@ -46,7 +61,7 @@ const server = http.createServer((req, res) => {
   // const data = fs.readFileSync(FICHERO, 'utf8');
   console.log("Lectura completada...")
   console.log("Contenido del fichero: \n")
-  console.log(data);
+  //console.log(data); 
   
 
   res.statusCode = code; // VEEER MEJOR
