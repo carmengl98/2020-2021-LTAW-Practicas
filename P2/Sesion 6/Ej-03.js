@@ -8,7 +8,7 @@ const PUERTO = 8080;
 const FORMULARIO = fs.readFileSync('form1.html','utf-8');
 
 //-- HTML de la página de respuesta
-const RESPUESTA = fs.readFileSync('form1-resp.html', 'utf-8');
+const RESPUESTA = fs.readFileSync('form1-resp2.html', 'utf-8');
 const server = http.createServer((req, res) => {
 
     //-- Construir el objeto url con la url de la solicitud
