@@ -4,7 +4,7 @@ const url = require('url');
 const fs = require('fs');
 
 //-- Definir el puerto a utilizar
-const PUERTO = 9000;
+const PUERTO = 8000; //¿¿¿¿¿¿¿¿¿¿he cambiado el puerto pq no me va con este????????????????
 
 //-- Crear el servidor
 const server = http.createServer((req, res) => {
@@ -29,20 +29,15 @@ const server = http.createServer((req, res) => {
   //-- Obtenemos el fichero correspondiente.
   if(myURL.pathname == '/'){
     filename += "./tienda.html"; //-- Página principal de la tienda
-    // -- Buscamos el "." final para poder indicar que tipo mime es
-    let hastaPunto = myURL.pathname.lastIndexOf(".");
-    let type = myURL.pathname.slice(hastaPunto+1);
-    console.log("Tipo de mime:",mime[type]);
   }else{
     filename = "." + myURL.pathname;
-    // -- Buscamos el "." final para poder indicar que tipo mime es
-    let hastaPunto = myURL.pathname.lastIndexOf(".");
-    let type = myURL.pathname.slice(hastaPunto+1);
-    console.log("Tipo de mime:",mime[type]);
-  
   }
-   
   console.log("Filename:",filename);
+
+  // -- Buscamos el "." final para poder indicar que tipo mime es
+  let hastaPunto = myURL.pathname.lastIndexOf(".");
+  let type = myURL.pathname.slice(hastaPunto+1);
+  console.log("Tipo de mime:",mime[type]);
 
   //-- Valores de la respuesta por defecto
   let code = 200;
@@ -60,7 +55,7 @@ const server = http.createServer((req, res) => {
       
     res.statusCode = code; 
     res.statusMessage = message;
-    res.writeHead(code, {'Content-Type': mime});
+    res.writeHead(code, {'Content-Type': mime[type]});
     res.write(data);
     res.end();
     
