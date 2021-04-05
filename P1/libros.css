@@ -1,0 +1,56 @@
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: 'Courier New';
+}
+button {
+    border: 1px solid coral; /*anchura, estilo y color borde*/
+    padding: 10px; /*espacio alrededor texto*/
+    background-color:coral;
+    color: #ffffff; 
+    text-transform: uppercase;
+    font-family: Geneva, Tahoma, sans-serif; 
+}
+
+img{
+    width: 140px;
+    float: left; 
+    padding: 10px;
+}
+
+h3{
+    font-size: 30px;
+}
+
+p{
+    /* text-align: right; */
+    font-size: 15px;  
+}
+
+.menu{
+    background-color: coral;
+    color: #ffffff; 
+    font-size: 20px;
+    /* top,right,bottom,left */
+    padding: 10px 2px 5px 0px;
+    margin: 20px 0px 10px 0px;
+    border-style: groove;
+    border-color: lawngreen;
+    border-width: 5px;
+}
+.resumen{
+    border-style: solid;
+    border-color: lawngreen;
+    border-width: 5px;
+}
+.ficha{
+    text-align: center;
+    border-style: solid;
+    border-color: lawngreen;
+    border-width: 5px;
+}
+.licencia{
+    text-align: center;
+    border-style: solid;
+    border-color: lawngreen;
+    border-width: 5px;
+}
