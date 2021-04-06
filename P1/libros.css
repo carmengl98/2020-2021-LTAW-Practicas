@@ -1,24 +1,29 @@
 body {
     background-color: rgb(255, 255, 255);
-    font-family: 'Courier New';
+    /* font-family: 'Courier New'; */
+    font-family: Geneva, Tahoma, sans-serif; 
 }
 
 button {
     border: 1px solid coral; /*anchura, estilo y color borde*/
     padding: 5px; /*espacio alrededor texto*/
+    margin: 5px;
     background-color:coral;
     color: #ffffff; 
-    font-family: Geneva, Tahoma, sans-serif; 
+    font-weight: bold;
 }
 
 img{
-    width: 140px;
+    width: 160px;
     /* top,right,bottom,left */
     padding: 20px 40px 20px 20px;
 }
 
 h3{
     font-size: 20px;
+    font-weight: bold;
+    /* top,right,bottom,left */
+    padding: 20px 20px 0px 20px;
 }
 
 p{
@@ -31,36 +36,55 @@ p{
     font-size: 20px;
     /* top,right,bottom,left */
     padding: 5px 0px 5px 30px;
-    margin: 20px 0px 10px 0px;
+    margin: 0px;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; 
+    width: 100%;
 }
+
 .libro{
-    float: left; 
+    width: 25%;
     /* top,right,bottom,left */
     padding: 0px 20px 0px 20px;
-    margin: 0px 40px 0px 40px;
-    overflow: auto;
-    border-style: solid;
-    border-color: lawngreen;
-    border-width: 5px;
-}
-.resumen{
-    /* top,right,bottom,left */
-    padding: 0px 20px 40px 20px;
-    margin: 0px 40px 0px 40px;
+    font-weight: bold;
     border-style: solid;
     border-color:coral;
     border-width: 5px;
-    overflow: auto; /*??????? */
 }
 .ficha{
     /* top,right,bottom,left */
-    padding: 10px 0px 0px 0px;
-    margin: 20px 40px 10px 40px;
-    text-align: center;
+    padding: 20px 20px 20px 30px;
+    margin: 40px 40px 0px 40px;
     border-style: solid;
     border-color: coral;
     border-width: 5px;
 }
-.licencia{
+.resumen{
+    /* top,right,bottom,left */
+    padding: 0px 20px 30px 30px;
+    margin: 40px 40px 20px 40px;
+    border-style: solid;
+    border-color:coral;
+    border-width: 5px;
+}
+
+#foto{
+    width: 190px; 
+}
+
+.footer{
     text-align: center;
+    padding: 10px;
+}
+#bloque{
+    background-color: coral;
+    color: coral;
+}
+#info{
+    width: 90%; 
+    padding: 10px;
+}
+#licencia{
+    width: 10%; 
+    padding: 10px;
 }
