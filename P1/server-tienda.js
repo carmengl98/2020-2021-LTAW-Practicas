@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
   //console.log("Recurso recibido: " + myURL.pathname);
 
   //-- Indicamos que se ha recibido una petición
-  console.log("----------> Petición recibida:",myURL);
+  //console.log("----------> Petición recibida:",myURL);
 
   var mime = {
     '/' : 'text/html',
@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
   if(myURL.pathname == '/'){
     filename += "./tienda.html"; //-- Página principal de la tienda
   }else{
-    filename = "." + myURL.pathname;
+    filename += "." + myURL.pathname;
   }
   console.log("Filename:",filename);
 
