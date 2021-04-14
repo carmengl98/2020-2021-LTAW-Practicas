@@ -1,15 +1,26 @@
 body {
     background-color: rgb(255, 255, 255);
-    /* font-family: 'Courier New'; */
     font-family: Geneva, Tahoma, sans-serif; 
 }
 
+h2{
+    font-size: 40px;
+    color:coral;
+    text-align: center;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: bold;
+    /* top,right,bottom,left */
+    padding: 10px 10px 10px 10px;
+    margin: 0px 0px 0px 0px;;
+}
+
 p{
-    /* text-align: right; */
     font-size: 15px;  
     color: black;
-    /* text-decoration: none; */
-    text-decoration-line:inherit;
+    text-decoration: none;
 }
 
 .menu{
@@ -18,25 +29,46 @@ p{
     /* top,right,bottom,left */
     padding: 0px 20px 0px 40px;
     margin: 0px;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; 
     width: 100%;
 
 }
 
-.libros{
+#libro1{
     background-color:rgba(255, 255, 255);
     /* top,right,bottom,left */
-    margin:80px 30px 15px 20px;
-    padding: 20px 20px 5px 20px;
+    margin:20px 40px 20px 40px;
+    padding: 40px 30px 40px 30px;
+    width: 20%;
     text-align: center;
-    border-style: solid;
-    border-color: coral;
-    border-width: 5px;
-    
+    box-shadow: 0px 0px 5px #ccc;
+    float: left;
+
 }
+#libro2{
+    background-color:rgba(255, 255, 255);
+    /* top,right,bottom,left */
+    margin:20px 40px 20px 40px;
+    padding: 40px 30px 40px 30px;
+    width: 20%;
+    text-align: center;
+    box-shadow: 0px 0px 5px #ccc;
+    float: left;
+
+}
+#libro3{
+    background-color:rgba(255, 255, 255);
+    /* top,right,bottom,left */
+    margin:20px 40px 20px 40px;
+    padding: 40px 30px 40px 30px;
+    width: 20%;
+    text-align: center;
+    box-shadow: 0px 0px 5px #ccc;
+    float: left;
+
+}
+
 .fotos{
-    width: 160px; 
+    width: 180px; 
 }
 
 .footer{
