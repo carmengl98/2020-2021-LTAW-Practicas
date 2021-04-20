@@ -4,7 +4,7 @@ const url = require('url');
 const fs = require('fs');
 
 //-- Definir el puerto a utilizar
-const PUERTO = 9000; //¿¿¿¿¿¿¿¿¿¿he cambiado el puerto pq no me va con este????????????????
+const PUERTO = 9000; 
 
 //-- Crear el servidor
 const server = http.createServer((req, res) => {
