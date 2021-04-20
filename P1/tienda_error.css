@@ -1,0 +1,16 @@
+body{
+    background-color: #ffff;
+    font-family: Geneva, Tahoma, sans-serif; 
+    color: white;
+}
+h1{
+    background-color: coral;
+    text-align: center;
+    /* top,right,bottom,left */
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+img{
+    size: 100%;
+    
+}
