@@ -1,4 +1,3 @@
-console.log("Ejecutando Javascript...");
 
 //-- Elementos HTML para mostrar informacion
 const display1 = document.getElementById("display1");
@@ -42,4 +41,4 @@ caja.oninput = () => {
       m.send();
             
 
-}
+} 
