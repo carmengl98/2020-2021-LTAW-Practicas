@@ -4,7 +4,7 @@ const http = require('http');
 //-- Vamos a dar un poquito de color...
 const colors = require('colors');
 
-const PUERTO = 8080;
+const PUERTO = 8000;
 
 //-- Crear servidor. No tiene recursos implementados
 //-- (siempre devuelve error)
@@ -31,13 +31,17 @@ wsServer.on('request', (req) => {
         if (message.type === 'utf8') {
             console.log("  Mensaje: " + message.utf8Data.green);
 
-            //-- Enviar el eco
+            //-- Enviar el eco (aparece en el terminal)
             connection.sendUTF(message.utf8Data);
         }
     });
 
+    //message.utf8: Se trata de un mensaje de texto
+    //message.binary: Es un mensaje en binario
+
     //-- Retrollamada de cierre de conexión
     connection.on('close', (reasonCode, description) => {
+        // Press Ctrl+C to close
         console.log("Conexión cerrada".yellow + ". Código: " + reasonCode + ". Razón: " + description);
     });
 
