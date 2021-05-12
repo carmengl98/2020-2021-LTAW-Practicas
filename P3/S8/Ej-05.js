@@ -18,7 +18,7 @@ app.get('/woala', (req, res) => {
     console.log("Acceso a /woala");
 });
 
-//-- El directorio publico contiene ficheros estáticos
+//-- El directorio publico contiene ficheros estáticos(carpeta donde se encuentran los ficheros)
 app.use(express.static('public'));
 
 //-- Lanzar el servidor
