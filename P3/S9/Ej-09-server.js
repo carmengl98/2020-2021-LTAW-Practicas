@@ -45,6 +45,12 @@ io.on('connect', (socket) => {
 
     //-- Reenviarlo a todos los clientes conectados
     io.send(msg);
+    socket.send(msg);//diferencia??
+
+    //io.send(data);--> envia  a todos los clientes que están actualmente conectados
+    //socket.send(data);-->solo envía al cliente que esta al otro lado del socket
+    
+
   });
 
 });
