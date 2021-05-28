@@ -6,10 +6,8 @@ const colors = require('colors');
 
 const PUERTO = 9000;
 
-var user = 0;
-
-
-
+let user = 0;
+let name_user = [];
 //-- Crear una nueva aplciacion web
 const app = express();
 
@@ -22,7 +20,7 @@ const io = socket(server);
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido a mi aplicación Web!!!' + '<p><a href="/public_chat/index.html">Test</a></p>');
+  res.sendFile(__dirname + "/public_chat/index.html");
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
@@ -37,14 +35,20 @@ app.use(express.static('public_chat'));
 io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXIÓN **'.yellow);
-  
+
   user = user + 1;
+  msg_inf1 = "BIENVENIDO AL CHAT!!";
+  socket.send('<p style="color:lightblue">'+ msg_inf1 +'</p>');
+
+  msg_inf2 = "** NUEVO USUARIO CONECTADO **";
+  socket.send('<p style="color:lightblue">'+ msg_inf2 +'</p>');
   console.log('Usuarios conectados:'.green, user);
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     if (user >= 0){
+      user = user - 1;
       console.log('Usuarios conectados:'.green, user);
     }
   });  
@@ -71,14 +75,15 @@ io.on('connect', (socket) => {
         io.send(message_date);
         break;
       case '/list': 
-        const message_users = 'Usuarios conectados: ' + user;
+        name_user = 'User'+user; 
+        const message_users = 'Usuarios conectados: ' + name_user;
         io.send(message_users);
       break;
       default:
         if(msg[0] == '/'){
           io.send('El comando es erroneo!!')
         }else{
-          socket.send(msg);
+          io.send(msg);
         }
         return;
     }
