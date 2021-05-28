@@ -7,7 +7,7 @@ const colors = require('colors');
 const PUERTO = 9000;
 
 let user = 0;
-let name_user = [];
+username = [];
 //-- Crear una nueva aplciacion web
 const app = express();
 
@@ -37,61 +37,67 @@ io.on('connect', (socket) => {
   console.log('** NUEVA CONEXIÓN **'.yellow);
 
   user = user + 1;
+  if(!user){
+    username.push('User'+user); 
+  }
+  
+  console.log(username);
   msg_inf1 = "BIENVENIDO AL CHAT!!";
   socket.send('<p style="color:lightblue">'+ msg_inf1 +'</p>');
 
   msg_inf2 = "** NUEVO USUARIO CONECTADO **";
   socket.send('<p style="color:lightblue">'+ msg_inf2 +'</p>');
   console.log('Usuarios conectados:'.green, user);
-
+ 
+  
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     if (user >= 0){
       user = user - 1;
       console.log('Usuarios conectados:'.green, user);
+
     }
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
-    switch(msg){
-      case '/help':
-        const message_listcommand = '/help --> Mostrará una lista con todos los comandos soportados.' + '<br>' +
-                            '/list --> Devolverá el número de usuarios conectados.' + '<br>' +
-                            '/hello --> El servidor nos devolverá el saludo.' + '<br>' +
-                            '/date --> Nos devolverá la fecha.';
+    if (msg.startsWith('/')) {
+      switch(msg){
+        case '/help':
+          const message_listcommand = '/help --> Lista con todos los comandos soportados.' + '<br>' +
+                 '/list --> Número de usuarios conectados.' + '<br>' +
+                 '/hello --> El servidor nos devolverá el saludo.' + '<br>' +
+                 '/date --> Fecha actual.';
 
-        io.send(message_listcommand);
-        break;
-      case '/hello':
-        const message_hello = '¡¡Bienvenido al chat!!';
-        io.send(message_hello);
-        break;
-      case '/date':
-        d = new Date();
-        const message_date = 'Fecha: ' + d.getDate() +'/'+ d.getMonth() +'/' + d.getFullYear();
-        io.send(message_date);
-        break;
-      case '/list': 
-        name_user = 'User'+user; 
-        const message_users = 'Usuarios conectados: ' + name_user;
-        io.send(message_users);
-      break;
-      default:
-        if(msg[0] == '/'){
-          io.send('El comando es erroneo!!')
-        }else{
-          io.send(msg);
-        }
-        return;
+          io.send(message_listcommand);
+          break;
+        case '/hello':
+          const message_hello = '¡¡Bienvenido al chat!!';
+          io.send(message_hello);
+          break;
+        case '/date':
+          d = new Date();
+          const message_date = 'Fecha: ' + d.getDate() +'/'+ d.getMonth()+1 +'/' + d.getFullYear();
+          io.send(message_date);
+          break;
+       case '/list': 
+          const message_users = 'Usuarios conectados: ' + username;
+          io.send(message_users);
+          break;
+        default:
+          io.send('El comando es incorrecto!!. Intoduzca /help para visualizar los comandos.');
+          return;
+      }
+    }else{
+      if(user){
+        io.send(username + ' : ' + msg);
+      }else{
+        io.send('Tiene que registrarse!!');
+      }
     }
 
-    //-- Reenviarlo a todos los clientes conectados
-    //io.send(msg);
-    //socket.send(msg);
-    //io.send(data);--> envia  a todos los clientes que están actualmente conectados
 
   });
 
