@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Permitir sólo scripts y ficheros de la máquina local -->
+    <!-- Con esto se elimina el aviso de seguridad: Insecure Content-Security-Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';" />
+
+    <!-- Hoja de estilo de la interfaz -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Cargar el proceso asociado a esta página -->
+    <script src="index.js" defer></script>
+
+    <title>Mi chat APP.</title>
+</head>
+<body>
+    <h1>INTERFAZ GRÁFICA</h1>
+
+    <hr>
+    <h2>Información:</h2>
+    <ul>
+        <!-- informacion que se va a sacar del sistema al que le hemos dado permisos  -->
+        <li>Versión de Node: <span id="info1" class="blue"></span> </li>
+        <li>Versión de Chrome: <span id="info2" class="blue"></span></li>
+        <li>Versión de Electron: <span id="info3" class="blue"></span></li>
+    </ul>
+    <h2>Usuarios conectados:</h2>
+    <p><span id='print' class="red"></span> </p>
+    <h2>Dirección IP:</h2>
+    <p id="info4"> </p>
+    <h2>Pruebas:</h2>
+    <p id="prueba"> </p>
+    <hr>
+    <p>Mensajes (enviados desde el proceso main):</p>
+    <!-- Vamos a imprimir los mensajes que hemos recibido de tipo print -->
+    <p>  <span id='print' class="red"></span> </p>
+    <p>   <input type="button" value="Test" id="btn_test"> </p>
+   <p>Display:</p>
+    <p id="display"></p>
+</body>
+</html>
