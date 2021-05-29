@@ -14,9 +14,9 @@ const print = document.getElementById("print");
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
 //-- el proceso princpal
-info1.textContent = process.arch;
-info2.textContent = process.version.chrome;
-info3.textContent = process.version;
+info1.textContent = process.versions.node;
+info2.textContent = process.versions.chrome;
+info3.textContent = process.versions.electron;
 
 
 btn_prueba.onclick = () => {

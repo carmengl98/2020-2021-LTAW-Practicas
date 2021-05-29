@@ -8,6 +8,11 @@ const electron = require('electron');
 
 const PUERTO = 9000;
 
+let user = 0;
+username = [];
+
+//-- Crear una nueva aplciacion web
+const app = express();
 
 //-- Crear un servidor, asosiaco a la App de express
 const server = http.Server(app);
@@ -26,7 +31,7 @@ app.get('/', (req, res) => {
 app.use('/', express.static(__dirname +'/'));
 
 //-- El directorio publico contiene ficheros estáticos
-//app.use(express.static('public_chat'));
+app.use(express.static('public_chat'));
 
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
@@ -35,7 +40,9 @@ io.on('connect', (socket) => {
   console.log('** NUEVA CONEXIÓN **'.yellow);
 
   user = user + 1;
-
+  if(!user){
+    username.push('User'+user); 
+  }
   console.log(username);
   msg_inf1 = "BIENVENIDO AL CHAT!!";
   socket.send('<p style="color:lightblue">'+ msg_inf1 +'</p>');
@@ -50,7 +57,8 @@ io.on('connect', (socket) => {
     if (user >= 0){
       user = user - 1;
       console.log('Usuarios conectados:'.green, user);
-
+      username.pop();
+      console.log(username);
     }
   });
 
@@ -92,10 +100,7 @@ io.on('connect', (socket) => {
       }
     }
 
-
   });
-
-
 
 });
 
@@ -122,31 +127,11 @@ electron.app.on('ready', () => {
           contextIsolation: false
         }
     });
+ 
+    //-- Cargar interfaz gráfica en HTML
+    win.loadFile("index.html");
+  
 
-  //-- Cargar interfaz gráfica en HTML
-  win.loadFile("index.html");
-
-  //-- Esperar a que la página se cargue y se muestre y luego
-  //-- enviar el mensaje al proceso de renderizado para que lo
-  //-- saque por la interfaz gráfica.
-  win.on('ready-to-show', () => {
-    win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
-  });
-
-  //-- Enviar un mensaje al proceso de renderizado para que lo saque
-  //-- por la interfaz gráfica
-  win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
-
-});
-
-
-//-- Esperar a recibir los mensajes de botón apretado (Test) del proceso de 
-//-- renderizado. Al recibirlos se escribe una cadena en la consola
-
-//Esto quiere decir que si llega un evento al que hemos llamado test,
-// ese mensaje me lo imprimes en la consola.
-electron.ipcMain.handle('test', (event, msg) => {
-  console.log("-> Mensaje: " + msg);
 });
 
 
