@@ -34,20 +34,18 @@ app.use(express.static('public_chat'));
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
   
-  console.log('** NUEVA CONEXIÓN **'.yellow, socket.id);
+  console.log('** NUEVA CONEXIÓN **'.yellow);
 
   user = user + 1;
   if(user){
     username.push(socket.id);
   }
 
-   
-  console.log(username);
   msg_inf1 = "BIENVENIDO AL CHAT!!";
   socket.send('<p style="color:lightblue">'+ msg_inf1 +'</p>');
 
   msg_inf2 = "** NUEVO USUARIO CONECTADO **";
-  socket.send('<p style="color:lightblue">'+ msg_inf2 +'</p>');
+  io.send('<p style="color:lightblue">'+ msg_inf2 +'</p>');
   console.log('Usuarios conectados:'.green, user);
 
   //-- Evento de desconexión
