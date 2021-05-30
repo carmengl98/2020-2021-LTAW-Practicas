@@ -3,6 +3,7 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
+const ip = require('ip');
 //-- Cargar el módulo de electron
 const electron = require('electron');
 
@@ -10,6 +11,9 @@ const PUERTO = 9000;
 
 let user = 0;
 username = [];
+
+let address = 'http://' + ip.address()+ ':'+ PUERTO + '/public_chat/index.html';
+console.log(address);
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -130,8 +134,27 @@ electron.app.on('ready', () => {
  
     //-- Cargar interfaz gráfica en HTML
     win.loadFile("index.html");
+
+    //-- Esperar a que la página se cargue y se muestre
+    //-- y luego enviar el mensaje al proceso de renderizado para que 
+    //-- lo saque por la interfaz gráfica
+    win.on('ready-to-show', () => {
+      console.log("HOLA?");
+      win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+  });
+
   
 
+});
+
+
+//-- Esperar a recibir los mensajes de botón apretado (Test) del proceso de 
+//-- renderizado. Al recibirlos se escribe una cadena en la consola
+
+//Esto quiere decir que si llega un evento al que hemos llamado test,
+// ese mensaje me lo imprimes en la consola.
+electron.ipcMain.handle('test', (event, msg) => {
+  console.log("-> Mensaje: " + msg);
 });
 
 
