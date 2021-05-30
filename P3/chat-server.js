@@ -37,8 +37,13 @@ io.on('connect', (socket) => {
   console.log('** NUEVA CONEXIÓN **'.yellow);
 
   user = user + 1;
-  if(!user){
-    username.push('User'+user); 
+  if(user <= 1){
+    username.push('User'+user);
+  }
+
+  if(user == username){ 
+    username.push('User'+user);  
+  
   }
   
   console.log(username);
@@ -48,8 +53,7 @@ io.on('connect', (socket) => {
   msg_inf2 = "** NUEVO USUARIO CONECTADO **";
   socket.send('<p style="color:lightblue">'+ msg_inf2 +'</p>');
   console.log('Usuarios conectados:'.green, user);
- 
-  
+
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
@@ -63,6 +67,7 @@ io.on('connect', (socket) => {
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
+    
     if (msg.startsWith('/')) {
       switch(msg){
         case '/help':
@@ -79,7 +84,7 @@ io.on('connect', (socket) => {
           break;
         case '/date':
           d = new Date();
-          const message_date = 'Fecha: ' + d.getDate() +'/'+ d.getMonth()+1 +'/' + d.getFullYear();
+          const message_date = 'Fecha: ' + d.getDate() +'/'+ d.getMonth() +'/' + d.getFullYear();
           io.send(message_date);
           break;
        case '/list': 
@@ -92,9 +97,9 @@ io.on('connect', (socket) => {
       }
     }else{
       if(user){
-        io.send(username + ' : ' + msg);
-      }else{
-        io.send('Tiene que registrarse!!');
+        console.log(user);
+        console.log(username);
+        io.send(username + ':' + msg);
       }
     }
 
