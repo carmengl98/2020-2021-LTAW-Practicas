@@ -3,12 +3,14 @@ const msg_entry = document.getElementById("msg_entry");
 
 //-- Crear un websocket. Se establece la conexión con el servidor
 const socket = io();
-username = []
 
+//El evento se activa cuando se recibe un mensaje
 socket.on("message", (msg)=>{
+    //Se añade el mensaje al display
+    display.innerHTML += '<p style="color:grey">'+ msg + '</p>';
   
-  display.innerHTML += '<p style="color:grey">'+ username + msg + '</p>';
 });
+
 
 //-- Al apretar el botón se envía un mensaje al servidor
 msg_entry.onchange = () => {
@@ -18,3 +20,4 @@ msg_entry.onchange = () => {
   //-- Borrar el mensaje actual
   msg_entry.value = "";
 }
+
