@@ -56,7 +56,7 @@ io.on('connect', (socket) => {
       var index = username.indexOf(socket.id);
       if (index > -1) {
         username.splice(index, 1);
-        io.send('<p style="color:lightblue">'+ "El User" + index + " se ha desconectado." +'</p>');
+        io.send('<p style="color:lightblue">'+ "** El User" + index + " se ha desconectado **" +'</p>');
       }
       console.log('Usuarios conectados:'.green, user);
 
