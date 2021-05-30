@@ -7,14 +7,27 @@ h1 {
   }
 
 .blue {
-    color: blue;
+  color: blue;
 }
 
 .red {
   color: red;
 }
 
-  #display {
-      border: 2px solid lightblue;
-      padding: 10px;
-  }
+#display {
+  border: 2px solid lightblue;
+  padding: 10px;
+}
+
+#izq{
+  position: relative;
+  float: left;
+  border: 2px solid lightblue;
+  padding-inline-start: 10px;
+}
+
+#der{
+  position: relative;
+  float: right;
+  border: 2px solid lightblue;
+}

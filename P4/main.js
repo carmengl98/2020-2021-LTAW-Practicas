@@ -48,15 +48,13 @@ io.on('connect', (socket) => {
     username.push(socket.id);
   }
 
-  console.log(username);/////////////////////////
   msg_inf1 = "BIENVENIDO AL CHAT!!";
   socket.send('<p style="color:lightblue">'+ msg_inf1 +'</p>');
 
   msg_inf2 = "** NUEVO USUARIO CONECTADO **";
   io.send('<p style="color:lightblue">'+ msg_inf2 +'</p>');
   console.log('Usuarios conectados:'.green, user);
-
-
+  
   win.webContents.send('num_user',user);
 
   //-- Evento de desconexión
@@ -67,6 +65,7 @@ io.on('connect', (socket) => {
       var index = username.indexOf(socket.id);
       if (index > -1) {
         username.splice(index, 1);
+        win.webContents.send('num_user',user);
         io.send('<p style="color:lightblue">'+ "** El User" + index + " se ha desconectado **" +'</p>');
       }
       console.log('Usuarios conectados:'.green, user);
@@ -96,11 +95,11 @@ io.on('connect', (socket) => {
           break;
         case '/date':
           d = new Date();
-          const message_date = 'Fecha: ' + d.getDate() +'/'+ (d.getMonth()+1)+ +'/' + d.getFullYear();
+          const message_date = 'Fecha: ' + d.getDate() +'/'+ (d.getMonth()+1)+'/' + d.getFullYear();
           socket.send(message_date);
           break;
        case '/list': 
-          const message_users = 'Usuarios conectados: ' + username;
+          const message_users = 'Usuarios conectados: ' + user;
           socket.send(message_users);
           break;
         default:
@@ -149,8 +148,6 @@ electron.app.on('ready', () => {
     //-- y luego enviar el mensaje al proceso de renderizado para que 
     //-- lo saque por la interfaz gráfica
     win.on('ready-to-show', () => {
-      console.log("HOLA?");
-      win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
       win.webContents.send('ip', address);
   });
 
@@ -159,8 +156,8 @@ electron.app.on('ready', () => {
 
 //Si llega un evento al que hemos llamado test,
 // ese mensaje me lo imprimes en la consola.
-electron.ipcMain.handle('test', (event, msg) => {
-  console.log("-> Mensaje: " + msg);
+electron.ipcMain.handle('print', (event, msg) => {
+  console.log("Mensaje: " + msg);
 });
 
 

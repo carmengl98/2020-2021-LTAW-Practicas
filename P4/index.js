@@ -1,5 +1,4 @@
 const electron = require('electron');
-const ip = require('ip');
 
 console.log("Hola desde el proceso de la web...");
 
@@ -26,13 +25,13 @@ btn_prueba.onclick = () => {
     console.log("Botón apretado!");
 
     //-- Enviar mensaje al proceso principal
-    //mensaje asociado al evento test
+    // un mensaje asociado al evento test
     electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
     //Este mensaje lo recibe el proceso principal cuando apretamos el boton
 }
 
 electron.ipcRenderer.on('ip', (event, address) => {
-    console.log("Recibido: " + address);
+    console.log(address);
     info4.textContent = address;
 });
 
