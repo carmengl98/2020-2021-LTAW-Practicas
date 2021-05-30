@@ -34,18 +34,14 @@ app.use(express.static('public_chat'));
 //-- Evento: Nueva conexion recibida
 io.on('connect', (socket) => {
   
-  console.log('** NUEVA CONEXIÓN **'.yellow);
+  console.log('** NUEVA CONEXIÓN **'.yellow, socket.id);
 
   user = user + 1;
-  if(user <= 1){
-    username.push('User'+user);
+  if(user){
+    username.push(socket.id);
   }
 
-  if(user == username){ 
-    username.push('User'+user);  
-  
-  }
-  
+   
   console.log(username);
   msg_inf1 = "BIENVENIDO AL CHAT!!";
   socket.send('<p style="color:lightblue">'+ msg_inf1 +'</p>');
@@ -59,6 +55,11 @@ io.on('connect', (socket) => {
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     if (user >= 0){
       user = user - 1;
+      var index = username.indexOf(socket.id);
+      if (index > -1) {
+        username.splice(index, 1);
+        io.send('<p style="color:lightblue">'+ "El User" + index + " se ha desconectado." +'</p>');
+      }
       console.log('Usuarios conectados:'.green, user);
 
     }
@@ -76,33 +77,31 @@ io.on('connect', (socket) => {
                  '/hello --> El servidor nos devolverá el saludo.' + '<br>' +
                  '/date --> Fecha actual.';
 
-          io.send(message_listcommand);
+          socket.send(message_listcommand);
           break;
         case '/hello':
           const message_hello = '¡¡Bienvenido al chat!!';
-          io.send(message_hello);
+          socket.send(message_hello);
           break;
         case '/date':
-          d = new Date();
-          const message_date = 'Fecha: ' + d.getDate() +'/'+ d.getMonth() +'/' + d.getFullYear();
-          io.send(message_date);
+          d = new Date();         
+          const message_date = 'Fecha: ' + d.getDate() +'/'+ (d.getMonth()+1) +'/' + d.getFullYear();
+          socket.send(message_date);
           break;
        case '/list': 
-          const message_users = 'Usuarios conectados: ' + username;
-          io.send(message_users);
+          const message_users = 'Usuarios conectados: ' + user;
+          socket.send(message_users);
           break;
         default:
-          io.send('El comando es incorrecto!!. Intoduzca /help para visualizar los comandos.');
+          socket.send('El comando es incorrecto!!. Intoduzca /help para visualizar los comandos.');
           return;
       }
     }else{
       if(user){
-        console.log(user);
-        console.log(username);
-        io.send(username + ':' + msg);
+        var index = username.indexOf(socket.id);
+        io.send('User'+ index + ':' + msg);
       }
     }
-
 
   });
 
