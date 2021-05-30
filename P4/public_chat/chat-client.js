@@ -1,5 +1,6 @@
 const display = document.getElementById("display");
 const msg_entry = document.getElementById("msg_entry");
+const sonido = document.getElementById("sonido");
 
 //-- Crear un websocket. Se establece la conexión con el servidor
 const socket = io();
@@ -8,7 +9,7 @@ const socket = io();
 socket.on("message", (msg)=>{
     //Se añade el mensaje al display
     display.innerHTML += '<p style="color:grey">'+ msg + '</p>';
-  
+    sonido.play();
 });
 
 
