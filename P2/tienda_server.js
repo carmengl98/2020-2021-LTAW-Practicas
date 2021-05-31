@@ -20,10 +20,21 @@ const ERROR = fs.readFileSync('tienda_error.html');
 const MAIN = fs.readFileSync('index_tienda.html','utf-8');
 
 //-- Leer fichero JSON con los productos
-const PRODUCTOS_JSON = fs.readFileSync('productos_tienda.json');
+const TIENDA_JSON = fs.readFileSync('productos_tienda.json');
 
 //-- Obtener el array de productos
-let productos = JSON.parse(PRODUCTOS_JSON);
+//-- Crear la estructura tienda a partir del contenido del fichero
+let tienda = JSON.parse(TIENDA_JSON);
+
+//-- Mostrar informacion sobre la tienda
+console.log("Productos en la tienda: " + tienda.length);
+
+//-- Recorrer el array de productos
+/* tienda.forEach((element, index)=>{
+  console.log("Producto: " + (index + 1) + ": " + element["nombre"]);
+}); */
+
+
 
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => { 
@@ -44,18 +55,42 @@ const server = http.createServer((req, res) => {
 
      //-- Leer las cookies
     const cookie = req.headers.cookie;
-    console.log("Cookie: " + cookie)
+    console.log("Cookie: " + cookie);
 
+    var mime = {
+        '/' : 'text/html',
+        'html' : 'text/html',
+        'css'  : 'text/css',
+        'jfif'  : 'image/jfif',
+        'png'  : 'image/png',
+        'gif'  : 'image/gif',
+      
+    };
+    
+    let filename = ""
+    filename += "." + myURL.pathname;
+    console.log("Filename---------",filename);
+    let hastaPunto = myURL.pathname.lastIndexOf(".");
+    let type = myURL.pathname.slice(hastaPunto+1);
+    content_type = mime[type];
+    console.log("Mime---------",mime[type]);
 
     switch (recurso) {
         case '':
+            console.log("Main page");
+            content = MAIN;
             if (cookie) {
                 console.log('Cookie!!!!!!!')
-             } else {
-                console.log('Nooooo cookie')
+                //-- Obtener un array con todos los pares nombre-valor
+                let pares = cookie.split(";");
+                console.log(pares);
+                //-- Variable para guardar el usuario
+                let user;
+                console.log(user);
+            } else {
+                console.log('Nooooo cookie');
+                
             }
-            console.log("Main page");
-            content = FORMULARIO;
             break;
 
         case 'procesar':
@@ -65,10 +100,10 @@ const server = http.createServer((req, res) => {
             console.log(" Nombre: " + nombre);
             console.log(" Apellidos: " + apellidos);
 
-            content_type = "text/html";
+            res.setHeader('Set-Cookie',apellidos);
+
             content = RESPUESTA;
-            //-- Reemplazar las palabras claves por su valores
-            //-- en la plantilla HTML
+            //-- Reemplazar las palabras claves por su valores en la plantilla HTML
             content = RESPUESTA.replace("NOMBRE", nombre);
             content = content.replace("APELLIDOS", apellidos);
             //-- si el usuario es Chuck Norris se añade HTML extra
@@ -79,7 +114,7 @@ const server = http.createServer((req, res) => {
             content = content.replace("HTML_EXTRA", html_extra);
             break;
 
-        case 'productos':
+        case 'tienda':
             console.log("Peticion de Productos!")
             content_type = "application/json";
 
@@ -104,7 +139,10 @@ const server = http.createServer((req, res) => {
                 }
                 
             }
+
             console.log(result);
+            //-- También podemos hacer la operación inversa: pasar una variable a formato JSON. Se hace con el método:
+            // JSON.stringify(variable)
             content = JSON.stringify(result);
             break;
 
@@ -124,13 +162,38 @@ const server = http.createServer((req, res) => {
             
             return;
             break;
-        
-        /* case 'prod1.html':
-            console.log('holiiiiiiiiiiii');
-            content_type = "text/html";
+    
+        case 'tienda.html':
             content = MAIN;
-            break; */
-            //-- Si no es ninguna de las anteriores devolver mensaje de error
+            break; 
+        case 'libro1.html':
+            content = fs.readFileSync(filename,'utf-8');
+            break; 
+        case 'libro2.html':
+            content = fs.readFileSync(filename,'utf-8');
+            break; 
+        case 'libro3.html':
+            content = fs.readFileSync(filename,'utf-8');
+            break; 
+        case 'libros.css':
+            content = fs.readFileSync(filename);
+            break; 
+        case 'tienda.css':
+            content = fs.readFileSync(filename);
+            break;
+        case 'img_tienda/licencia.png':
+            content = fs.readFileSync(filename);
+            break;   
+        case "img_tienda/Libro_1.jfif":
+            content = fs.readFileSync(filename);
+            break;
+        case "img_tienda/Libro_2.jfif":
+            content = fs.readFileSync(filename);
+            break; 
+        case "img_tienda/Libro_3.jfif":
+            content = fs.readFileSync(filename);
+            break;    
+        //-- Si no es ninguna de las anteriores devolver mensaje de error
         default:
             res.setHeader('Content-Type','text/html');
             res.statusCode = 404;
@@ -144,17 +207,19 @@ const server = http.createServer((req, res) => {
   
         //-- Los datos del cuerpo son caracteres
         req.setEncoding('utf8');
-        console.log(`Cuerpo (${cuerpo.length} bytes)`)
+        console.log(`Cuerpo (${cuerpo.length} bytes)`);
         console.log(` ${cuerpo}`);
+        usuario= recortar(data, "=")
+        console.log(usuario);
      });
         
     
     //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
         req.on('end', ()=> {
         //-- Generar respuesta
-        res.setHeader('Content-Type', content_type);
+        res.setHeader('Content-Type', mime[type]);
         res.write(content);
-        res.end()
+        res.end();
     });
     
     
