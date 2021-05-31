@@ -23,12 +23,12 @@ caja.oninput = () => {
                 console.log('OK');
                 
                 //-- La respuesta es un objeto JSON
-                let productos = JSON.parse(m.responseText)
+                let productos = JSON.parse(m.responseText);
 
-                console.log(productos);
+                console.log("productooos------->",productos);
 
                 display.innerHTML = " ";
-            
+                
 
                 //--Recorrer los productos del objeto JSON
                 for (let i=0; i < productos.length; i++) {

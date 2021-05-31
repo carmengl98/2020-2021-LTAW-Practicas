@@ -1,13 +1,14 @@
 {
+    "tarta": [{"num": 1}],
     "usuarios":[
         {
             "nombre":"Carmen",
-            "real": "Gonzalez",
-            "correo":"user@"
+            "user": "carmeng",
+            "correo":"carmen@"
         },
         {
             "nombre":"Root",
-            "real": "usuario",
+            "user": "user",
             "correo":"user@"
         }
     ],

@@ -47,18 +47,20 @@ const server = http.createServer((req, res) => {
   //-- Leer fichero
   fs.readFile(filename, function(err, data) {
      //-- Fichero no encontrado. Devolver mensaje de error
-    if (err) {
+    if ((err|| (filename == 'error.html'))) {
       code = 404;
       message = "Not Found";
-      return res.end("404 Not Found");
+      data = fs.readFileSync('./tienda_error.html')
+      res.writeHead(code, {'Content-Type': 'text/html'});
+      res.write(data);
+      res.end();
+    }else{
+      res.statusCode = code; 
+      res.statusMessage = message;
+      res.writeHead(code, {'Content-Type': mime[type]});
+      res.write(data);
+      res.end();
     }
-    //console.log("Respuesta: 200 OK")
-      
-    res.statusCode = code; 
-    res.statusMessage = message;
-    res.writeHead(code, {'Content-Type': mime[type]});
-    res.write(data);
-    res.end();
     
   });
   
