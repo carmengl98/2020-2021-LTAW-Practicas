@@ -21,7 +21,7 @@ info3.textContent = process.versions.electron;
 
 btn_prueba.onclick = () => {
     //mensaje que sale por la interfaz gráfia
-    display.innerHTML += "TEST! ";
+    display.innerHTML += "Mensaje de prueba!";
     console.log("Botón apretado!");
 
     //-- Enviar mensaje al proceso principal
@@ -44,5 +44,6 @@ electron.ipcRenderer.on('num_user', (event,user) => {
 //mensaje asociado al evento print
 electron.ipcRenderer.on('print', (event, message) => {
     console.log("Recibido: " + message);
-    print.textContent = message;
+    print.innerHTML += message;
+
 });

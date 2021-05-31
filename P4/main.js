@@ -59,7 +59,7 @@ io.on('connect', (socket) => {
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
-    console.log('** CONEXIÓN TERMINADA **'.yellow);
+    console.log('** CONEXION TERMINADA **'.yellow);
     if (user >= 0){
       user = user - 1;
       var index = username.indexOf(socket.id);
@@ -76,7 +76,7 @@ io.on('connect', (socket) => {
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
 
-    win.webContents.send('message',msg);
+    win.webContents.send('print',msg);
     console.log("Mensaje Recibido!: " + msg.blue);
 
     if (msg.startsWith('/')) {
@@ -151,13 +151,6 @@ electron.app.on('ready', () => {
       win.webContents.send('ip', address);
   });
 
-});
-
-
-//Si llega un evento al que hemos llamado test,
-// ese mensaje me lo imprimes en la consola.
-electron.ipcMain.handle('print', (event, msg) => {
-  console.log("Mensaje: " + msg);
 });
 
 
