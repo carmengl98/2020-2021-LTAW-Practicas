@@ -30,13 +30,11 @@ p{
 }
 
 .menu{
-    background-color:coral;
+    background-color: coral;
     color: #ffffff; 
-    font-size: 20px;
     /* top,right,bottom,left */
-    padding: 5px 0px 5px 30px;
-    margin: 0px;
-    width: 100%;
+    padding: 4px 20px 4px 20px;
+
 }
 
 .libro{
@@ -79,9 +77,28 @@ p{
     text-align: center;
     padding: 10px;
 }
+
+#caja{
+    /* top,right,bottom,left */
+    margin:8px 10px 4px 10px;
+    padding: 6px;
+}
+
 #bloque{
-    background-color:coral;
+    background-color: coral;
     color: coral;
+    padding: 6px;
+}
+
+#login{
+    color: black;
+    float: right;
+    padding: 15px; 
+}
+#carro{
+    width: 40px;
+    float: right; 
+    padding: 15px;
 }
 #info{
     width: 90%; 

@@ -6,15 +6,6 @@ body {
 h2{
     font-size: 40px;
     color:coral;
-    text-align: center;
-}
-
-h3{
-    font-size: 20px;
-    font-weight: bold;
-    /* top,right,bottom,left */
-    padding: 10px 10px 10px 10px;
-    margin: 0px 0px 0px 0px;;
 }
 
 p{
@@ -27,44 +18,19 @@ p{
     background-color: coral;
     color: #ffffff; 
     /* top,right,bottom,left */
-    padding: 0px 20px 0px 40px;
-    margin: 0px;
-    width: 100%;
+    padding: 4px 20px 4px 20px;
 
 }
 
-#libro1{
+.libros{
     background-color:rgba(255, 255, 255);
     /* top,right,bottom,left */
-    margin:20px 40px 20px 40px;
+    margin:25px 20px 20px 20px;
     padding: 40px 30px 40px 30px;
     width: 20%;
     text-align: center;
     box-shadow: 0px 0px 5px #ccc;
     float: left;
-
-}
-#libro2{
-    background-color:rgba(255, 255, 255);
-    /* top,right,bottom,left */
-    margin:20px 40px 20px 40px;
-    padding: 40px 30px 40px 30px;
-    width: 20%;
-    text-align: center;
-    box-shadow: 0px 0px 5px #ccc;
-    float: left;
-
-}
-#libro3{
-    background-color:rgba(255, 255, 255);
-    /* top,right,bottom,left */
-    margin:20px 40px 20px 40px;
-    padding: 40px 30px 40px 30px;
-    width: 20%;
-    text-align: center;
-    box-shadow: 0px 0px 5px #ccc;
-    float: left;
-
 }
 
 .fotos{
@@ -75,9 +41,27 @@ p{
     text-align: center;
     padding: 10px;
 }
+
+#caja{
+    /* top,right,bottom,left */
+    margin:8px 10px 4px 10px;
+    padding: 6px;
+}
+
 #bloque{
     background-color: coral;
     color: coral;
+    padding: 6px;
+}
+#login{
+    color: black;
+    float: right; 
+    padding: 15px;
+}
+#carro{
+    width: 40px;
+    float: right; 
+    padding: 15px;
 }
 #info{
     width: 90%; 
