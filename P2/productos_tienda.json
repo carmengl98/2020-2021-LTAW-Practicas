@@ -1,5 +1,38 @@
-[
-    "Libro1", 
-    "Libro2", 
-    "Arduino-UNO"
-]
+{
+    "usuarios":[
+        {
+            "nombre":"Carmen",
+            "real": "Gonzalez",
+            "correo":"user@"
+        },
+        {
+            "nombre":"Root",
+            "real": "usuario",
+            "correo":"user@"
+        }
+    ],
+
+    "productos": [
+        {
+            "nombre":"Libro 1",
+            "descripcion": "El guardian invisible",
+            "precio": "9.50",
+            "stock":"4"
+        },
+        {
+            "nombre":"Libro 2",
+            "descripcion": "Legado de huesos",
+            "precio": "9.50",
+            "stock":"4"
+        },
+        {
+            "nombre":"Libro 3",
+            "descripcion": "Ofrenda a la tormenta",
+            "precio": "9.50",
+            "stock":"3"
+        }
+
+    ],
+    
+    "pedidos": []
+}
