@@ -48,14 +48,13 @@ const server = http.createServer((req, res) => {
     console.log("  Parametros: " + myURL.searchParams);
 
     //-- Leer recurso y eliminar la / inicial
-    let recurso = myURL.pathname;
-    recurso = recurso.substr(1); 
-    console.log('recursooooooooooooooo',recurso);
-    content_type = "text/html";
+    let filename = myURL.pathname;
+    filename = filename.substr(1); 
+    console.log('recursooooooooooooooo',filename);
 
      //-- Leer las cookies
     const cookie = req.headers.cookie;
-    console.log("Cookie: " + cookie);
+    console.log("Cookie---------------> " + cookie);
 
     var mime = {
         '/' : 'text/html',
@@ -64,29 +63,25 @@ const server = http.createServer((req, res) => {
         'jfif'  : 'image/jfif',
         'png'  : 'image/png',
         'gif'  : 'image/gif',
+        'json' : 'application/json',
       
     };
     
-    let filename = ""
-    filename += "." + myURL.pathname;
-    console.log("Filename---------",filename);
     let hastaPunto = myURL.pathname.lastIndexOf(".");
     let type = myURL.pathname.slice(hastaPunto+1);
-    content_type = mime[type];
-    console.log("Mime---------",mime[type]);
-
-    switch (recurso) {
+    console.log("Mime -------->",mime[type]);
+    
+    switch (filename) {
         case '':
-            console.log("Main page");
             content = MAIN;
             if (cookie) {
                 console.log('Cookie!!!!!!!')
                 //-- Obtener un array con todos los pares nombre-valor
                 let pares = cookie.split(";");
-                console.log(pares);
+                console.log('Pareeees---->',pares);
                 //-- Variable para guardar el usuario
                 let user;
-                console.log(user);
+                console.log('useeer---->',user);
             } else {
                 console.log('Nooooo cookie');
                 
@@ -97,8 +92,8 @@ const server = http.createServer((req, res) => {
             //-- Leer los parámetros
             let nombre = myURL.searchParams.get('nombre');
             let apellidos = myURL.searchParams.get('apellidos');
-            console.log(" Nombre: " + nombre);
-            console.log(" Apellidos: " + apellidos);
+            console.log(" Nombre---------> " + nombre);
+            console.log(" Apellidos----> " + apellidos);
 
             res.setHeader('Set-Cookie',apellidos);
 
@@ -111,6 +106,7 @@ const server = http.createServer((req, res) => {
             if (nombre=="Chuck" && apellidos=="Norris") {
                 html_extra = "<h2>Chuck Norris no necesita registrarse</h2>";
             }
+            mime[type]= "text/html";
             content = content.replace("HTML_EXTRA", html_extra);
             break;
 
@@ -148,8 +144,8 @@ const server = http.createServer((req, res) => {
 
         case 'cliente.js':
             //-- Leer fichero javascript
-            console.log("recurso: " + recurso);
-            fs.readFile(recurso, 'utf-8', (err,data) => {
+            console.log("recurso---------> " + filename);
+            fs.readFile(filename, 'utf-8', (err,data) => {
                 if (err) {
                     console.log("Error: " + err)
                     return;
@@ -165,6 +161,9 @@ const server = http.createServer((req, res) => {
     
         case 'tienda.html':
             content = MAIN;
+            break; 
+        case 'form_user.html':
+            content = FORMULARIO;
             break; 
         case 'libro1.html':
             content = fs.readFileSync(filename,'utf-8');
@@ -192,9 +191,13 @@ const server = http.createServer((req, res) => {
             break; 
         case "img_tienda/Libro_3.jfif":
             content = fs.readFileSync(filename);
-            break;    
+            break;  
+        case "img_tienda/informacion.png":
+            content = fs.readFileSync(filename);
+            break;   
         //-- Si no es ninguna de las anteriores devolver mensaje de error
         default:
+            /////////////////////////////////
             res.setHeader('Content-Type','text/html');
             res.statusCode = 404;
             res.write(ERROR);
@@ -214,12 +217,14 @@ const server = http.createServer((req, res) => {
      });
         
     
-    //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
+        //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
         req.on('end', ()=> {
         //-- Generar respuesta
+        
         res.setHeader('Content-Type', mime[type]);
         res.write(content);
         res.end();
+        
     });
     
     
