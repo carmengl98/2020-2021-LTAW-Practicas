@@ -1,0 +1,33 @@
+body{
+    background-color:cornflowerblue;
+    font-family: Geneva, Tahoma, sans-serif;
+    
+}
+
+h1{
+    background-color:rgb(52, 78, 126);
+    color: white;
+    padding: 20px;
+    margin-inline-start: 50px;
+    margin-inline-end: 80px;
+    margin-block-start: 40px;
+    margin-block-end: 20px;
+    text-align: center;
+}
+
+#sala{
+    background-color: whitesmoke;
+    border: 8px solid whitesmoke;
+    padding: 20px;
+    margin-inline-start: 50px;
+    margin-inline-end: 80px;
+}
+#msg_entry{
+    padding: 10px;
+}
+#display{
+    padding: 10px;
+}
+#btn-msg{
+    padding: 10px;
+}

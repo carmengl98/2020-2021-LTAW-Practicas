@@ -1,33 +1,56 @@
-h1 {
+body{
+  font-family: Geneva, Tahoma, sans-serif;
+}
+
+h1{
     width: 93%;
     padding: 20px;
-    background-color: lightgreen;
+    background-color: cornflowerblue;
     border-radius: 10px;
     text-align: center;
-  }
+}
 
 .blue {
   color: blue;
 }
 
-.red {
-  color: red;
+.grey {
+  color:grey;
 }
 
-#display {
-  border: 2px solid lightblue;
+button{
   padding: 10px;
+  background-color: cornflowerblue;
+  border-color: cornflowerblue;
+  border-radius: 10px;
+  text-align: center;
+  margin: 10px;
+}
+
+#print {
+  text-align: center;
+  /* top,right,bottom,left */
+  margin:20px 20px 20px 20px;
+  padding:40px 40px 40px 40px;
 }
 
 #izq{
   position: relative;
   float: left;
-  border: 2px solid lightblue;
-  padding-inline-start: 10px;
+  border: 10px solid cornflowerblue;
+  border-radius: 10px;
+  /* top,right,bottom,left */
+  margin:10px 30px 10px 30px;
+  padding:10px 30px 10px 30px;
 }
 
 #der{
   position: relative;
-  float: right;
-  border: 2px solid lightblue;
+  float: left;
+  border: 10px solid cornflowerblue;
+  border-radius: 10px;
+  /*border-radius: 10px;
+  /* top,right,bottom,left */
+  margin:10px 30px 10px 30px;
+  padding:10px 20px 10px 20px;
 }
