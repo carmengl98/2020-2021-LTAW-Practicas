@@ -1,4 +1,6 @@
 const electron = require('electron');
+const address = require('ip');
+const QRCode = require('qrcode');
 
 console.log("Hola desde el proceso de la web...");
 
@@ -8,9 +10,12 @@ const info1 = document.getElementById("info1");
 const info2 = document.getElementById("info2");
 const info3 = document.getElementById("info3");
 const info4 = document.getElementById("info4");
+const info5 = document.getElementById("info5");
+const info6 = document.getElementById("info6");
+const info7 = document.getElementById("info7");
 const num_user = document.getElementById("num_user");
-const display = document.getElementById("display");
 const print = document.getElementById("print");
+const qrcode = document.getElementById("qrcode");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -18,21 +23,28 @@ const print = document.getElementById("print");
 info1.textContent = process.versions.node;
 info2.textContent = process.versions.chrome;
 info3.textContent = process.versions.electron;
+info4.textContent = process.arch;
+info5.textContent = process.platform;
+info6.textContent = process.cwd();
 
 btn_prueba.onclick = () => {
     //mensaje que sale por la interfaz gráfia
-    display.innerHTML += "Mensaje de prueba!";
+    print.innerHTML += "Mensaje de prueba!" + `<br>`;
     console.log("Botón apretado!");
 
     //-- Enviar mensaje al proceso principal
-    // un mensaje asociado al evento test
-    electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
+    // un mensaje asociado al evento print
+    electron.ipcRenderer.invoke('print', "MENSAJE DE PRUEBA: Boton apretado");
     //Este mensaje lo recibe el proceso principal cuando apretamos el boton
 }
 
+QRCode.toDataURL(address, function (err, url) {
+    qrcode.src = url;
+});
+
 electron.ipcRenderer.on('ip', (event, address) => {
     console.log(address);
-    info4.textContent = address;
+    info7.textContent = address;
 });
 
 electron.ipcRenderer.on('num_user', (event,user) => {
@@ -44,6 +56,6 @@ electron.ipcRenderer.on('num_user', (event,user) => {
 //mensaje asociado al evento print
 electron.ipcRenderer.on('print', (event, message) => {
     console.log("Recibido: " + message);
-    print.innerHTML += message;
+    print.innerHTML += message + `<br>`;
 
 });

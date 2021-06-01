@@ -75,8 +75,8 @@ io.on('connect', (socket) => {
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
-
-    win.webContents.send('print',msg);
+    var index = username.indexOf(socket.id);
+    win.webContents.send('print',"User" + index +": " + msg);
     console.log("Mensaje Recibido!: " + msg.blue);
 
     if (msg.startsWith('/')) {
@@ -153,6 +153,12 @@ electron.app.on('ready', () => {
 
 });
 
+//-- Si llega un evento al que hemos llamado print,
+// ese mensaje me lo imprimes en la consola.
+electron.ipcMain.handle('print', (event, msg) => {
+  console.log("Mensaje: " + msg);
+  io.send(msg);
+});
 
 //-- Lanzar el servidor HTTP
 //-- ¡Que empiecen los juegos de los WebSockets!
