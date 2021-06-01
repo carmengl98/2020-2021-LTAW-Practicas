@@ -1,15 +1,14 @@
 {
-    "tarta": [{"num": 1}],
     "usuarios":[
         {
             "nombre":"Carmen",
             "user": "carmeng",
-            "correo":"carmen@"
+            "correo":"carmen@gmail.com"
         },
         {
             "nombre":"Root",
             "user": "user",
-            "correo":"user@"
+            "correo":"user@gmail.com"
         }
     ],
 
@@ -35,5 +34,12 @@
 
     ],
     
-    "pedidos": []
+    "pedidos": [
+        {
+            "usuario":"carmeng",
+            "direccion": "El guardian invisible",
+            "tarjeta": "1234",
+            "productos": [ ]
+        }
+    ]
 }
