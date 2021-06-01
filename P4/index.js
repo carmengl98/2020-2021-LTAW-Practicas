@@ -1,6 +1,5 @@
 const electron = require('electron');
 const address = require('ip');
-const QRCode = require('qrcode');
 
 console.log("Hola desde el proceso de la web...");
 
@@ -15,7 +14,6 @@ const info6 = document.getElementById("info6");
 const info7 = document.getElementById("info7");
 const num_user = document.getElementById("num_user");
 const print = document.getElementById("print");
-const qrcode = document.getElementById("qrcode");
 
 //-- Acceder a la API de node para obtener la info
 //-- Sólo es posible si nos han dado permisos desde
@@ -38,10 +36,6 @@ btn_prueba.onclick = () => {
     //Este mensaje lo recibe el proceso principal cuando apretamos el boton
 }
 
-QRCode.toDataURL(address, function (err, url) {
-    qrcode.src = url;
-});
-
 electron.ipcRenderer.on('ip', (event, address) => {
     console.log(address);
     info7.textContent = address;
@@ -59,3 +53,5 @@ electron.ipcRenderer.on('print', (event, message) => {
     print.innerHTML += message + `<br>`;
 
 });
+
+
