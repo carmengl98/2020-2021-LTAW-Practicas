@@ -10,10 +10,10 @@ const PUERTO = 9000;
 const server = http.createServer((req, res) => {
   
   const myURL = new URL(req.url, 'http://' + req.headers['host']);
-  //console.log("Recurso recibido: " + myURL.pathname);
+  console.log("Recurso recibido: " + myURL.pathname);
 
   //-- Indicamos que se ha recibido una petición
-  //console.log("----------> Petición recibida:",myURL);
+  console.log("----------> Petición recibida:",myURL);
 
   var mime = {
     '/' : 'text/html',
