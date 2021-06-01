@@ -2,31 +2,31 @@
     "usuarios":[
         {
             "nombre":"Carmen",
-            "user": "carmeng",
+            "user":"carmeng",
             "correo":"carmen@gmail.com"
         },
         {
             "nombre":"Root",
-            "user": "user",
+            "user":"root",
             "correo":"user@gmail.com"
         }
     ],
 
     "productos": [
         {
-            "nombre":"Libro 1",
+            "nombre":"libro 1",
             "descripcion": "El guardian invisible",
             "precio": "9.50",
             "stock":"4"
         },
         {
-            "nombre":"Libro 2",
+            "nombre":"libro 2",
             "descripcion": "Legado de huesos",
             "precio": "9.50",
             "stock":"4"
         },
         {
-            "nombre":"Libro 3",
+            "nombre":"libro 3",
             "descripcion": "Ofrenda a la tormenta",
             "precio": "9.50",
             "stock":"3"
@@ -37,9 +37,20 @@
     "pedidos": [
         {
             "usuario":"carmeng",
-            "direccion": "El guardian invisible",
+            "direccion": "madrid",
             "tarjeta": "1234",
-            "productos": [ ]
+            "productos": [{"libro1": 0,
+                            "libro2": 2,
+                            "libro3": 0
+            }]
+        },
+        {
+            "usuario":"root",
+            "direccion": "madrid",
+            "tarjeta": "4567",
+            "productos": [{"libro1": 0,
+                           "libro2": 0,
+                           "libro3": 1 }]
         }
     ]
 }
