@@ -10,6 +10,8 @@ button {
     background-color:coral;
     color: #ffffff; 
     font-weight: bold;
+}
+#agregar{
     position: relative;
     left: 250px;
 }
