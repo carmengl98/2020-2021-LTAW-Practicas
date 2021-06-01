@@ -1,9 +1,15 @@
 
 //-- Elementos HTML para mostrar informacion
 const display = document.getElementById("display");
+const display2 = document.getElementById("display2");
+const carro = document.getElementById("carro");
 
 //-- Caja de busqueda
 const caja = document.getElementById("caja");
+
+carro.onclick = ()=> {
+    display.innerHTML+="<p>Hola desde JS!</p>";
+}
 
 //-- Retrollamda del boton de Ver productos
 caja.oninput = () => {
@@ -20,21 +26,19 @@ caja.oninput = () => {
 
             //-- Solo la procesamos si la respuesta es correcta
             if (m.status==200) {
-                console.log('OK');
                 
                 //-- La respuesta es un objeto JSON
                 let productos = JSON.parse(m.responseText);
 
-                console.log("productooos------->",productos);
-
                 display.innerHTML = " ";
                 
+                console.log('rr',productos[0]["nombre"])
 
                 //--Recorrer los productos del objeto JSON
                 for (let i=0; i < productos.length; i++) {
 
                     //-- Añadir cada producto al párrafo de visualización
-                    display.innerHTML += productos[i];
+                    display.innerHTML += productos[i]["nombre"];
 
                     //-- Separamos los productos por ',''
                     if (i < productos.length-1) {

@@ -46,14 +46,14 @@ const server = http.createServer((req, res) => {
             param1 = param1.toUpperCase();
 
             console.log("  Param: " +  param1);
-
+            console.log(productos);
             let result = [];
 
             for (let prod of productos) {
 
                 //-- Pasar a mayúsculas
                 prodU = prod.toUpperCase();
-
+                console.log('prod',prod);
                 //-- Si el producto comienza por lo indicado en el parametro
                 //-- meter este producto en el array de resultados
                 if (prodU.startsWith(param1)) {
@@ -67,7 +67,7 @@ const server = http.createServer((req, res) => {
 
         case 'client4.js':
             //-- Leer fichero javascript
-            console.log("recurso: " + recurso);
+            console.log("recurso---------------------: " + recurso);
             fs.readFile(recurso, 'utf-8', (err,data) => {
                 if (err) {
                     console.log("Error: " + err)

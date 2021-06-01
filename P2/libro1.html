@@ -9,6 +9,7 @@
         <title>Libro 1</title>
         <!-- Hoja de estilo  -->
         <link rel="stylesheet" href="libros.css">
+        <script src = "cliente.js" defer> </script>
     </head>
 
     <body>
@@ -19,15 +20,17 @@
         </a>
         <a href="form_user.html"><p id="login">Login</p></a>
         <div class="menu">
-          <input type = "text" id = "caja" placeholder="Buscar..." autocomplete="on">
-          <p id = "display"> </p>
+            <input type = "text" id = "caja" placeholder="Buscar..." autocomplete="on">
+            <p id = "display"> </p>
+        </div><br>
         </div><br>
 
         <div class="libro">
            <h3>EL GUARDIAN INVISIBLE</h3>
            <img id= "foto" src="img_tienda/Libro_1.jfif" alt="Libro 1"></a>
            <p>9,45 € + gastos de envío</p>
-           <button type="submit">Añadir al carrito</button>
+           <button id="carro"> carro</button>
+           
         </div>
         
         <div class ="ficha">
