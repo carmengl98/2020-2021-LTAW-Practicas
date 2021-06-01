@@ -13,21 +13,22 @@
 
     <body>
         <h2>Bookshop</h2>
-        <div class="menu">
-            <a href="tienda.html"><button>PÁGINA PRINCIPAL</button></a>
+        <a href="tienda.html"><button>PÁGINA PRINCIPAL</button></a>
+        <a href="mi_compra.html">
+            <img id="carro" src="img_tienda/shoppingcar.png" alt="carrito">
+          </a>
+          <a href="form_user.html"><p id="login">Login</p></a>
+          <div class="menu">
             <input type = "text" id = "caja" placeholder="Buscar..." autocomplete="on">
             <p id = "display"> </p>
-            <a href="form_user.html"><p id="login">login</p></a>
-            <a href="mi_compra.html">
-              <img id="carro" src="img_tienda/shoppingcar.png" alt="carrito">
-            </a>
+          </div><br>
         </div><br>
         
         <div class="libro">
             <h3>OFRENDA A LA TORMENTA</h3>
             <img id="foto" src="img_tienda/Libro_3.jfif" alt="Libro 3"></a>
             <p>9,45 € + gastos de envío</p>
-            <button type="submit">Añadir al carrito</button>
+            <button id="agregar">Añadir al carrito</button>
         </div>
         <div class="ficha">
            <h4>Ficha tecnica</h4>
