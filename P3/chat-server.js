@@ -46,6 +46,7 @@ io.on('connect', (socket) => {
 
   msg_inf2 = "** NUEVO USUARIO CONECTADO **";
   io.send('<p style="color:lightblue">'+ msg_inf2 +'</p>');
+  io.send('Usuarios conectados: '+ user);
   console.log('Usuarios conectados:'.green, user);
 
   //-- Evento de desconexión
@@ -59,7 +60,7 @@ io.on('connect', (socket) => {
         io.send('<p style="color:lightblue">'+ "** El User" + index + " se ha desconectado **" +'</p>');
       }
       console.log('Usuarios conectados:'.green, user);
-
+      io.send('Usuarios conectados: '+ user);
     }
   });  
 
