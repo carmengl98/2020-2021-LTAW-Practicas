@@ -74,6 +74,8 @@ function get_compra(req){
               }
 
             });
+    }else{
+        content = content.replace("HTML_EXTRA", "Tienes que registrarte antes de realizar un pedido");
     }
 
 
@@ -137,7 +139,7 @@ const server = http.createServer((req, res) => {
             
             content = RESPUESTA;
             let html_extra = "";
-            if (nombre==element["nombre"] && usuario==element["user"]) {
+            if (correo==element["correo"] && usuario==element["user"]) {
                 console.log("coincideeee");
                 html_extra = "<h2>No necesita registrarse!!</h2>";
             

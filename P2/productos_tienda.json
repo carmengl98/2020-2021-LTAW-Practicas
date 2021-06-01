@@ -1,14 +1,14 @@
 {
     "usuarios":[
         {
-            "nombre":"Carmen",
-            "user":"carmeng",
-            "correo":"carmen@gmail.com"
+            "nombre":"Root1",
+            "user":"user1",
+            "correo":"user1@gmail.com"
         },
         {
-            "nombre":"Root",
-            "user":"root",
-            "correo":"user@gmail.com"
+            "nombre":"Root2",
+            "user":"user2",
+            "correo":"user2@gmail.com"
         }
     ],
 
@@ -36,7 +36,7 @@
     
     "pedidos": [
         {
-            "usuario":"carmeng",
+            "usuario":"user1",
             "direccion": "madrid",
             "tarjeta": "1234",
             "productos": [{"libro1": 0,
@@ -45,7 +45,7 @@
             }]
         },
         {
-            "usuario":"root",
+            "usuario":"user2",
             "direccion": "madrid",
             "tarjeta": "4567",
             "productos": [{"libro1": 0,

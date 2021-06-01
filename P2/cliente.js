@@ -1,14 +1,13 @@
 
 //-- Elementos HTML para mostrar informacion
 const display = document.getElementById("display");
-const display2 = document.getElementById("display2");
-const carro = document.getElementById("carro");
+const agregar = document.getElementById("agregar");
 
 //-- Caja de busqueda
 const caja = document.getElementById("caja");
 
-carro.onclick = ()=> {
-    display.innerHTML+="<p>Hola desde JS!</p>";
+agregar.onclick = ()=> {
+    console.log("Hola desde JS!");
 }
 
 //-- Retrollamda del boton de Ver productos

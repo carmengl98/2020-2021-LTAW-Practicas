@@ -10,7 +10,8 @@ button {
     background-color:coral;
     color: #ffffff; 
     font-weight: bold;
-    float: left;
+    position: relative;
+    left: 250px;
 }
 
 input{
